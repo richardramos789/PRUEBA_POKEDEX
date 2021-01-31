@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col">
+        <input #palabra type="text" (keyup)="buscarPokemon(palabra.value)" class="form-control" placeholder="Ingresar nombre pokemón...">
+    </div>
+</div>
+
+<app-loading *ngIf="loading" class="m-5"></app-loading>
+
+<div *ngIf="!loading" class="card-columns m-5">
+    <app-tarjetas [items]="Pokemon"></app-tarjetas>
+</div>

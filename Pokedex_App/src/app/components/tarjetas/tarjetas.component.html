@@ -1,0 +1,53 @@
+<div class="row row-cols-1 row-cols-md-4 g-4 animated fadeIn">
+    <div (click)="verInformacionPokemon(item)" class="col puntero" *ngFor="let item of items ">
+        <div class="card h-100 ">
+            <img class="card-img-top " [src]="item.img_pokemon | imagePokemon " alt="... ">
+            <div class="card-body ">
+                <h5 class="card-title ">{{ item.id_pokemon | idPokemon }}</h5>
+                <h3 class="card-title ">{{ item.nombre_pokemon }}</h3>
+
+                <!-- <p class="card-text ">
+                    <span class="badge rounded-pill bg-danger " *ngFor="let type of item.tipos ">
+                        {{ type.tipo_Nombre }}
+                    </span>
+                </p> -->
+
+                <div class="tooltip-example col-xs-5 col-3" style="padding: 0; display: table; width:auto;">
+                    <ng-container *ngFor="let type of item.tipos">
+                        <ng-container [ngSwitch]="type['tipo_Nombre']">
+                            <div class="icon bug" *ngSwitchCase="'Bicho'"><img alt="" src="assets/type-icons/bug.png"></div>
+                            <div class="icon dark" *ngSwitchCase="'Oscuro'"><img alt="" src="assets/type-icons/dark.png"></div>
+                            <div class="icon dragon" *ngSwitchCase="'Dragón'"><img alt="" src="assets/type-icons/dragon.png"></div>
+                            <div class="icon electric" *ngSwitchCase="'Eléctrico'"><img alt="" src="assets/type-icons/electric.png"></div>
+                            <div class="icon fire" *ngSwitchCase="'Fuego'"><img alt="" src="assets/type-icons/fire.png"></div>
+                            <div class="icon fairy" *ngSwitchCase="'Hada'"><img alt="" src="assets/type-icons/fairy.png"></div>
+                            <div class="icon fighting" *ngSwitchCase="'Lucha'"><img alt="" src="assets/type-icons/fighting.png"></div>
+                            <div class="icon flying" *ngSwitchCase="'Volador'"><img alt="" src="assets/type-icons/flying.png"></div>
+                            <div class="icon ghost" *ngSwitchCase="'Fantasma'"><img alt="" src="assets/type-icons/ghost.png"></div>
+                            <div class="icon grass" *ngSwitchCase="'Planta'"><img alt="" src="assets/type-icons/grass.png"></div>
+                            <div class="icon ground" *ngSwitchCase="'Tierra'"><img alt="" src="assets/type-icons/ground.png"></div>
+                            <div class="icon ice" *ngSwitchCase="'Hielo'"><img alt="" src="assets/type-icons/ice.png"></div>
+                            <div class="icon normal" *ngSwitchCase="'Normal'"><img alt="" src="assets/type-icons/normal.png"></div>
+                            <div matTooltip="Tooltip!" class="icon poison" *ngSwitchCase="'Veneno'"><img alt="" src="assets/type-icons/poison.png"></div>
+                            <div class="icon psychic" *ngSwitchCase="'Psíquico'"><img alt="" src="assets/type-icons/psychic.png"></div>
+                            <div class="icon rock" *ngSwitchCase="'Roca'"><img alt="" src="assets/type-icons/rock.png"></div>
+                            <div class="icon steel" *ngSwitchCase="'Acero'"><img alt="" src="assets/type-icons/steel.png"></div>
+                            <div class="icon water" *ngSwitchCase="'Agua'"><img alt="" src="assets/type-icons/water.png"></div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+
+                <!-- <p class="card-text ">
+
+
+
+
+                    <span class="badge rounded-pill bg-danger " *ngFor="let type of item.tipos ">
+                        {{ type.tipo_Nombre }}
+                    </span>
+                </p> -->
+            </div>
+        </div>
+    </div>
+</div>

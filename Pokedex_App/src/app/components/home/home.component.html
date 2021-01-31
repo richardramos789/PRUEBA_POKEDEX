@@ -1,0 +1,10 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="error" class="alert alert-danger animated fadeIn">
+    <h3>Error</h3>
+    <p>
+        Ocurrio un error al procesar su solicitud
+    </p>
+</div>
+
+<app-tarjetas [items]="Pokemon"></app-tarjetas>

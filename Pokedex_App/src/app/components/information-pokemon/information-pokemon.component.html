@@ -1,0 +1,133 @@
+<app-loading *ngIf="loading" class="m-5"></app-loading>
+
+<div class="row animated fadeIn" *ngIf="!loading">
+    <div class="row animated fadeIn fast">
+        <div class="col-md-12 text-center">
+            <h3 class="card-title titlePokemon" style="color: white !important;">{{ Pokemon.nombre_pokemon | uppercase }}</h3>
+        </div>
+
+        <div class="col-md-8">
+            <div class="col-lg-12 col-md-12 bioDiv d-flex flex-wrap justify-content-center">
+                <div class="inner">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="thInfo"> ID</th>
+                                <td class="tdInfo">{{ Pokemon.id_pokemon | idPokemon }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="thInfo"> Peso</th>
+                                <td class="tdInfo">{{ Pokemon.weight | convertWeightAndHeight: 1 }} kg</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="thInfo"> Altura</th>
+                                <td class="tdInfo">{{ Pokemon.height | convertWeightAndHeight: 2 }} m</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="thInfo">Habilidades</th>
+                                <td class="tdInfo">
+                                    <p class="card-text">
+                                        <span class="badge rounded-pill bg-danger " style="border-radius: 0px !important;" *ngFor="let item of Pokemon.habilidades ">
+                                            {{ item.nombre_Habilidad | uppercase }}
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="thInfo">Type</th>
+                                <td class="tdInfo">
+                                    <div class="tooltip-example col-xs-5 col-3" style="padding: 0; display: table; width:auto;">
+                                        <ng-container *ngFor="let type of Pokemon.tipos">
+                                            <ng-container [ngSwitch]="type['tipo_Nombre']">
+                                                <div class="icon bug" *ngSwitchCase="'Bicho'">Bicho</div>
+                                                <div class="icon dark" *ngSwitchCase="'Oscuro'">Oscuro</div>
+                                                <div class="icon dragon" *ngSwitchCase="'Dragón'">Dragón</div>
+                                                <div class="icon electric" *ngSwitchCase="'Eléctrico'">Eléctrico</div>
+                                                <div class="icon fire" *ngSwitchCase="'Fuego'">Fuego</div>
+                                                <div class="icon fairy" *ngSwitchCase="'Hada'">Hada</div>
+                                                <div class="icon fighting" *ngSwitchCase="'Lucha'">Lucha</div>
+                                                <div class="icon flying" *ngSwitchCase="'Volador'">Volador</div>
+                                                <div class="icon ghost" *ngSwitchCase="'Fantasma'">Fantasma</div>
+                                                <div class="icon grass" *ngSwitchCase="'Planta'">Planta</div>
+                                                <div class="icon ground" *ngSwitchCase="'Tierra'">Tierra</div>
+                                                <div class="icon ice" *ngSwitchCase="'Hielo'">Hielo</div>
+                                                <div class="icon normal" *ngSwitchCase="'Normal'">Normal</div>
+                                                <div class="icon poison" *ngSwitchCase="'Veneno'">Veneno</div>
+                                                <div class="icon psychic" *ngSwitchCase="'Psíquico'">Psíquico</div>
+                                                <div class="icon rock" *ngSwitchCase="'Roca'">Roca</div>
+                                                <div class="icon steel" *ngSwitchCase="'Acero'">Acero</div>
+                                                <div class="icon water" *ngSwitchCase="'Agua'">Agua</div>
+                                            </ng-container>
+                                        </ng-container>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <img class="card-img-top " [src]="Pokemon.img_pokemon | imagePokemon " alt="... " style="z-index: 100!important;max-width: 85%;height: auto;padding-top: 10px;">
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-12 text-left">BASE</div>
+            <br>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="thInfo_b"> HP</th>
+                        <td class="tdInfo_b">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="255" style="width:{{hp}}"><span>{{hp}}</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="thInfo_b"> Attack</th>
+                        <td class="tdInfo_b">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="255" style="width:{{attack}}"><span>{{attack}}</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="thInfo_b"> Defence</th>
+                        <td class="tdInfo_b">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="255" style="width:{{defence}}"><span>{{defence}}</span></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="thInfo_b"> Sp. Attack</th>
+                        <td class="tdInfo_b">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="255" style="width:{{sp_a}}"><span>{{sp_a}}</span></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="thInfo_b"> Sp. Defence</th>
+                        <td class="tdInfo_b">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="255" style="width:{{sp_d}}"><span>{{sp_d}}</span></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="thInfo_b"> Speed</th>
+                        <td class="tdInfo_b">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="255" style="width:{{speed}}"><span>{{speed}}</span></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><br>
+
+        <div class="row ">
+            <div class="col ">
+                <button routerLink="/search" class="btn btn-outline-danger ">Regresar a Buscar</button>
+                <button routerLink="/home" class="btn btn-outline-danger ">Regresar al Listado</button>
+            </div>
+        </div>
+
+        <br>
+
+    </div>
+</div>
